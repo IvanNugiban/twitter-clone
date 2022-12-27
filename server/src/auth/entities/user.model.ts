@@ -1,5 +1,5 @@
 import {Field, InputType, ObjectType} from "@nestjs/graphql";
-import {IsEmail, IsString, Matches, MaxLength, MinLength} from "class-validator";
+import {IsEmail, IsString, Matches, MaxLength, MinLength, ValidateIf} from "class-validator";
 
 
 @ObjectType({description: "Auth"})
@@ -27,6 +27,7 @@ export class userModel {
     @Field({description: "Pseudonym"})
     pseudonym: string;
 
+    @ValidateIf(value => !value || value === "")
     @IsEmail(undefined, {
         message: "Please make sure you entered the correct email"
     })
