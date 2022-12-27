@@ -14,7 +14,7 @@ const StyledTrendingNow = styled.section<IProps>`
   border-radius: 20px;
   padding-top: 15px;
   background-color: ${({theme, withBackground}) => withBackground && theme.colors.gray_thin};
-  
+  min-height: 30vh;
   
   h4 {
     padding-left: 15px;

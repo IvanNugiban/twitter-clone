@@ -20,7 +20,6 @@ export class FilesService {
 
     async generateImage(image: string) {
         let imageName;
-        console.log(image.slice(0, 40));
         if (image.startsWith("data:video/mp4")) imageName = uuid.v4() + ".mp4";
         else if (image.startsWith("data:video/m4v")) imageName = uuid.v4() + ".m4v";
         else imageName = uuid.v4() + ".jpg"

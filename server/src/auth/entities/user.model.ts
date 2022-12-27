@@ -27,7 +27,6 @@ export class userModel {
     @Field({description: "Pseudonym"})
     pseudonym: string;
 
-    @ValidateIf(value => !value || value === "")
     @IsEmail(undefined, {
         message: "Please make sure you entered the correct email"
     })

@@ -14,6 +14,7 @@ const StyledWhoToFollow = styled.section`
   padding: 15px 0 15px 0;
   background-color: ${({theme}) => theme.colors.gray_thin};
   margin: 15px 0;
+  min-height: 20vh;
   
   h4 {
     padding-left: 15px;
