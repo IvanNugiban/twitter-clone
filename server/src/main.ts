@@ -13,7 +13,7 @@ async function bootstrap() {
         origin: process.env.ORIGIN,
         credentials: true,
     })
-    app.use(helmet());
+    app.use(helmet({ crossOriginResourcePolicy: false,}));
     app.use(express.json({limit: '50mb'}));
 
     app.useGlobalPipes(validationPipe);
