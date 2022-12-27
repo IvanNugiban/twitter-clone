@@ -1,0 +1,471 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""Auth"""
+type userModel {
+  """Username"""
+  username: String!
+
+  """Pseudonym"""
+  pseudonym: String!
+
+  """Email"""
+  email: String!
+
+  """Password"""
+  password: String!
+
+  """Date of joining"""
+  dateOfJoining: String
+
+  """Birthday"""
+  birthday: String!
+}
+
+"""Auth"""
+type LoginModel {
+  """Username"""
+  username: String!
+
+  """Email"""
+  email: String!
+
+  """Pseudonym"""
+  pseudonym: String!
+
+  """Date of joining"""
+  dateOfJoining: String!
+
+  """Description"""
+  description: String
+
+  """Birthday"""
+  birthday: String!
+
+  """Avatar"""
+  avatar: String
+
+  """Profile background"""
+  profileBackground: String
+
+  """Website"""
+  website: String
+
+  """Bookmarks"""
+  bookmarks: [String!]!
+
+  """Likes"""
+  likes: [String!]!
+
+  """Access token"""
+  accessToken: String!
+
+  """Font size level"""
+  fontSizeLevel: String
+
+  """Main color"""
+  color: String
+
+  """App theme"""
+  theme: String
+}
+
+"""Profile"""
+type ProfileModel {
+  """Username"""
+  username: String!
+
+  """Description"""
+  description: String
+
+  """Website"""
+  website: String
+
+  """Birthday"""
+  birthday: String!
+
+  """Avatar"""
+  avatar: String
+
+  """Profile background"""
+  profileBackground: String
+}
+
+type User {
+  """Username"""
+  username: String!
+
+  """Pseudonym"""
+  pseudonym: String!
+
+  """Date of joining"""
+  dateOfJoining: String!
+
+  """Description"""
+  description: String
+
+  """Website"""
+  website: String
+
+  """Avatar"""
+  avatar: String
+
+  """Profile background"""
+  profileBackground: String
+}
+
+type UserSearchOutput {
+  """Users"""
+  users: [User!]!
+
+  """Has more users?"""
+  hasMore: Boolean!
+}
+
+"""Followers and following"""
+type FollowingWithoutRefModel {
+  """Followers amount"""
+  followersAmount: Float!
+
+  """Following amount"""
+  followingAmount: Float!
+
+  """Is user following"""
+  isUserFollowing: Boolean!
+}
+
+"""Follower"""
+type FollowerModel {
+  """Avatar"""
+  avatar: String
+
+  """Username"""
+  username: String!
+
+  """Pseudonym"""
+  pseudonym: String!
+
+  """Avatar"""
+  description: String
+
+  """Is user following"""
+  isFollowing: Boolean!
+}
+
+"""Tweet model"""
+type TweetModel {
+  """Tweet id"""
+  id: ID!
+
+  """User reference"""
+  userRef: String!
+
+  """Tweet text"""
+  text: String
+
+  """Tweet media"""
+  media: [String!]
+
+  """Tweet gif"""
+  gif: String
+
+  """Date when tweet created"""
+  createdAt: String!
+}
+
+"""TweetOutput"""
+type TweetsOutputModel {
+  """Tweets"""
+  tweets: [TweetModel!]!
+
+  """Has more tweets?"""
+  hasMore: Boolean!
+}
+
+type TweetCommunication {
+  """Likes"""
+  likes: Float!
+
+  """Is user liked"""
+  isUserLiked: Boolean!
+
+  """Comments"""
+  comments: Float!
+
+  """Retweets"""
+  retweets: Float!
+
+  """Is user retweeted"""
+  isUserRetweeted: Boolean!
+
+  """Is user added tweet to bookmarks.ts"""
+  isTweetBookmarked: Boolean!
+}
+
+type Comments {
+  """Tweet id"""
+  id: ID!
+
+  """User reference"""
+  userRef: ID!
+
+  """Tweet reference"""
+  tweetRef: ID!
+
+  """Tweet text"""
+  text: String
+
+  """Tweet media"""
+  media: [String!]
+
+  """Tweet gif"""
+  gif: String
+
+  """Date when tweet created"""
+  createdAt: String!
+}
+
+type CommentsOutput {
+  """Comments"""
+  comments: [Comments!]!
+
+  """Has tweet more comments?"""
+  hasMore: Boolean!
+}
+
+type HashtagModel {
+  """Hashtag name"""
+  hashtag: String!
+
+  """Number of tweets with this hashtag"""
+  numberOfTweets: Float!
+
+  """Tweets with this hashtag"""
+  tweets: [String!]!
+}
+
+type SearchForResults {
+  """Result of search"""
+  hashtags: [HashtagModel!]
+
+  """Result of search"""
+  users: [User!]
+}
+
+input UserInput {
+  """Username"""
+  username: String!
+
+  """Pseudonym"""
+  pseudonym: String!
+
+  """Email"""
+  email: String!
+
+  """Password"""
+  password: String!
+
+  """Date of joining"""
+  dateOfJoining: String
+
+  """Birthday"""
+  birthday: String!
+}
+
+type Query {
+  refresh: LoginModel!
+  getUser(pseudonym: String!): User!
+  getSearchedUsers(UsersSearch: UserSearch!): UserSearchOutput!
+  getFollowingData(pseudonym: String!): FollowingWithoutRefModel!
+  getFollowing(pseudonym: String!): [FollowerModel!]!
+  getFollowers(pseudonym: String!): [FollowerModel!]!
+  getTweetById(tweetId: String!): TweetModel!
+  getHomeTweets(HomeTweetsData: HomeTweets!): TweetsOutputModel!
+  getSearchedTweets(TweetSearch: TweetSearch!): TweetsOutputModel!
+  getCommunicateData(tweetId: String!): TweetCommunication!
+  getProfileTweets(ProfileTweetsData: TweetsLimit!): TweetsOutputModel!
+  getRetweets(ProfileTweetsData: TweetsLimit!): TweetsOutputModel!
+  getTweetsWithMedia(ProfileTweetsData: TweetsLimit!): TweetsOutputModel!
+  getLikedTweets(ProfileTweetsData: TweetsLimit!): TweetsOutputModel!
+  getBookmarks(ProfileTweetsData: TweetsLimit!): TweetsOutputModel!
+  getAllTweets(ProfileTweetsData: TweetsLimit!): TweetsOutputModel!
+  getAllComments(CommentData: commentFetch!): CommentsOutput!
+  getCommentById(commentId: String!): Comments!
+  searchForResults(searchRequest: String!): SearchForResults!
+  getRecommendedUsers: [User!]!
+  getRandomHashtags: [HashtagModel!]!
+}
+
+input UserSearch {
+  """Search request"""
+  searchRequest: String!
+
+  """Tweets limit"""
+  limit: Float!
+
+  """Initial limit"""
+  initialLimit: Float!
+}
+
+input HomeTweets {
+  """Tweets limit"""
+  limit: Float!
+
+  """Type of search"""
+  typeOfSearch: String!
+
+  """Initial limit"""
+  initialLimit: Float!
+}
+
+input TweetSearch {
+  """Search request"""
+  searchRequest: String!
+
+  """Tweets limit"""
+  limit: Float!
+
+  """Initial limit"""
+  initialLimit: Float!
+}
+
+input TweetsLimit {
+  """User id"""
+  userPseudonym: String!
+
+  """Tweets limit"""
+  limit: Float!
+
+  """Initial limit"""
+  initialLimit: Float!
+}
+
+input commentFetch {
+  """Tweet id"""
+  tweetId: String!
+
+  """Comments limit"""
+  limit: Float!
+
+  """Initial limit"""
+  initialLimit: Float!
+}
+
+type Mutation {
+  checkRegisterData(User: UserInput!): userModel!
+  checkLoginData(user: String!): String!
+  checkVerificationCode(Verification: VerificationModel!): LoginModel!
+  checkPasswordResetCode(Verification: PasswordResetCodeModel!): Boolean!
+  sendVerificationCode(Email: String!): String!
+  resetPassword(NewPasswordData: PasswordResetData!): Boolean!
+  login(LoginInput: LoginType!): LoginModel!
+  logout: ID!
+  setFontSize(fontSize: String!): Boolean!
+  setTheme(theme: String!): Boolean!
+  setColor(color: String!): Boolean!
+  saveChanges(Profile: ProfileInputModel!): ProfileModel!
+  follow(followData: FollowModel!): Boolean!
+  unfollow(pseudonym: String!): Boolean!
+  createTweet(TweetData: Tweet!): TweetModel!
+  deleteTweet(tweetId: String!): Boolean!
+  likeTweet(tweetRef: String!): Boolean!
+  createComment(commentData: CommentsInput!): Boolean!
+  retweet(tweetId: ID!): Boolean!
+  addBookmark(tweetId: ID!): Boolean!
+  clearAllBookmarks: Boolean!
+}
+
+input VerificationModel {
+  """User data"""
+  user: UserInput!
+
+  """Verification code"""
+  code: Float!
+}
+
+input PasswordResetCodeModel {
+  """User email"""
+  userEmail: String!
+
+  """Verification code"""
+  code: Float!
+}
+
+input PasswordResetData {
+  """Password"""
+  password: String!
+
+  """User email"""
+  userEmail: String!
+}
+
+input LoginType {
+  """Email or username"""
+  emailOrUsername: String!
+
+  """Password"""
+  password: String!
+}
+
+"""Profile"""
+input ProfileInputModel {
+  """Username"""
+  username: String!
+
+  """Description"""
+  description: String
+
+  """Website"""
+  website: String
+
+  """Birthday"""
+  birthday: String!
+
+  """Avatar"""
+  avatar: String
+
+  """Profile background"""
+  profileBackground: String
+}
+
+"""Follow and unfollow data"""
+input FollowModel {
+  """Pseudonym"""
+  pseudonym: String!
+
+  """Is user following"""
+  isUserFollowing: Boolean!
+}
+
+"""Tweet input"""
+input Tweet {
+  """Tweet text"""
+  text: String
+
+  """Tweet media"""
+  media: [String!]
+
+  """Tweet gif"""
+  gif: String
+
+  """Date when tweet created"""
+  createdAt: String!
+}
+
+input CommentsInput {
+  """Comment reference"""
+  tweetRef: ID!
+
+  """Comment text"""
+  text: String
+
+  """Comment media"""
+  media: [String!]
+
+  """Comment gif"""
+  gif: String
+
+  """Date when comment created"""
+  createdAt: String!
+}
