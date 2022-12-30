@@ -59,7 +59,7 @@ const HomePage = observer(() => {
             {width > 500 && <FallbackSuspense><TweetCreator successText="Tweet created!"
                                                             callback={async (tweetText, media, gif) => {
                                                                 const result = await TweetService.createTweet(createTweet, {
-                                                                    text: tweetText,
+                                                                    text: tweetText.trim(),
                                                                     media,
                                                                     gif
                                                                 });

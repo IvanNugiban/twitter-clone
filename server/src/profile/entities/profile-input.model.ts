@@ -14,9 +14,7 @@ export class ProfileInputModel {
     username: string;
     @Field({nullable: true, description: "Description"})
     description?: string;
-    @ValidateIf(value => !value || value === "")
     @Field({description: "Website", nullable: true})
-    @Matches(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/ig, {message: "Please make sure you entered the correct website"})
     website?: string;
     @Field({description: "Birthday"})
     birthday: string;

@@ -128,6 +128,7 @@ const TweetPopUp = styled(PopUp)`
     height: auto;
   }
   padding: 30px 20px 0 20px;
+  max-height: 60vh;
 
   .tweetCreator {
     width: 100%;
@@ -196,10 +197,10 @@ const Navbar = observer(() => {
                         <FontAwesomeIcon icon={solid("feather")}/> : <H6Title>Tweet</H6Title>}</TweetButton>
                 </ContentWrapper>
                 {isTweetCreatorActive &&
-                    <TweetPopUp width="500px" withPadding={false}
+                    <TweetPopUp width="500px"  withPadding={false}
                                 closePopUp={() => setTweetCreatorState(false)}><FallbackSuspense><TweetCreator successText="Tweet created!"
                         callback={async (tweetText, media, gif) => {
-                            const result = await TweetService.createTweet(createTweet, {text: tweetText, media, gif});
+                            const result = await TweetService.createTweet(createTweet, {text: tweetText.trim(), media, gif});
                             if (result) ProfileTweetsStore.reset();
                             return result;
                         }} buttonText="Tweet" inputPlaceholder="What's happening?"

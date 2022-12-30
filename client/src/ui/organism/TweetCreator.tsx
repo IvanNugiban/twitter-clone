@@ -28,7 +28,6 @@ const StyledTweetCreator = styled.div`
 
   .tweetCreatorAvatar {
     min-width: 40px;
-    min-height: 40px;
   }
 
   &:after {

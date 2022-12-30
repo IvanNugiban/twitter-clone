@@ -32,7 +32,7 @@ const StyledProfileEditForm = styled.form`
   p {
     margin: 10px 0;
   }
-  
+
 `
 
 const SaveButton = styled(Button)`
@@ -65,16 +65,18 @@ const ProfileEditForm = ({user, avatarRef, backgroundRef, closeEditWindow}: IPro
             birthday: user.birthday
         },
         onSubmit: async (values) => {
-            console.log(values);
             await saveChanges({
                 variables: {
                     Profile: {
-                        ...values,
-                        avatar : ProfileStore.croppedAvatar,
-                        profileBackground : ProfileStore.croppedProfileBackground
+                        username: values.username.trim(),
+                        description: values.description.trim(),
+                        website: values.website.trim(),
+                        birthday: values.birthday,
+                        avatar: ProfileStore.croppedAvatar,
+                        profileBackground: ProfileStore.croppedProfileBackground
                     }
                 }
-            }) as {data: {saveChanges: IUserProfile}}
+            }) as { data: { saveChanges: IUserProfile } }
         }
     });
 
@@ -109,9 +111,11 @@ const ProfileEditForm = ({user, avatarRef, backgroundRef, closeEditWindow}: IPro
         <StyledProfileEditForm onSubmit={formik.handleSubmit}>
 
             <SaveButton small buttonType="submit" className="saveButton">Save</SaveButton>
-            <Input disabled={loading} maxLength={16} placeholder="Username" name="username" value={formik.values.username}
+            <Input disabled={loading} maxLength={16} placeholder="Username" name="username"
+                   value={formik.values.username}
                    onChange={formik.handleChange}/>
-            <Input disabled={loading} maxLength={160} placeholder="Description" name="description" value={formik.values.description}
+            <Input disabled={loading} maxLength={160} placeholder="Description" name="description"
+                   value={formik.values.description}
                    onChange={formik.handleChange}/>
             <Input disabled={loading} maxLength={100} placeholder="Website" name="website" value={formik.values.website}
                    onChange={formik.handleChange}/>

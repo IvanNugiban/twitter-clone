@@ -11,7 +11,9 @@ const UserProfileNavbarList = styled.ul<NavbarListProps>`
   overflow-x: auto;
   white-space: nowrap;
   z-index: 1500;
+  
 
+  
   ${({gridColumns}) => {
       if (gridColumns) return `
       grid-template-columns: ${gridColumns};
@@ -45,20 +47,21 @@ const UserProfileNavbarList = styled.ul<NavbarListProps>`
   }
 `
 
-const NavbarItem = styled.li<NavbarItemProps>`
+const NavbarItem = styled.li<NavbarItemProps>`;
+  display: flex;
+  justify-content: center;
   transition: 0.5s;
   max-height: 53px;
-  padding: 15px 0;
   text-align: center;
-  
+  height: 100%;
 
   h6 {
+    padding: 15px 0;
     display: inline-block;
-    padding-bottom: 14px;
+    min-height: 100%;
     font-weight: ${({isActive}) => isActive ? "700" : "400"};
     border-bottom: 3px solid ${({isActive, theme}) => isActive ? theme.colors.main : "none"};
     color: ${({isActive, theme}) => isActive ? theme.colors.black : "#5D6D79"};
-    
   }
   &:hover {
     transition: 0.5s;

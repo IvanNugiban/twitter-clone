@@ -7,7 +7,7 @@ class loginService {
     async checkLoginData(checkLoginData: MutationFunction, values: FormikValues) {
         await checkLoginData({
             variables: {
-                user: values.emailOrUsername
+                user: values.emailOrUsername.trim()
             }
         })
 
@@ -18,8 +18,8 @@ class loginService {
        const response = await loginFunction({
            variables: {
                LoginInput: {
-                   emailOrUsername: values.emailOrUsername,
-                   password: values.password
+                   emailOrUsername: values.emailOrUsername.trim(),
+                   password: values.password.trim()
                }
            }
        })

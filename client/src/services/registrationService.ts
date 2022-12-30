@@ -9,11 +9,11 @@ class RegistrationService {
         await checkRegisterData({
             variables: {
                 User: {
-                    username: values.username,
-                    pseudonym: values.pseudonym,
-                    email: values.email,
+                    username: values.username.trim(),
+                    pseudonym: values.pseudonym.trim(),
+                    email: values.email.trim(),
                     birthday: values.birthday,
-                    password: values.password
+                    password: values.password.trim()
                 }
             }
         })
@@ -24,10 +24,10 @@ class RegistrationService {
             variables: {
                 Verification: {
                     user: {
-                            username: values.username,
-                            pseudonym: values.pseudonym,
-                            email: values.email,
-                            password: values.password,
+                            username: values.username.trim(),
+                            pseudonym: values.pseudonym.trim(),
+                            email: values.email.trim(),
+                            password: values.password.trim(),
                             dateOfJoining: new Date(),
                             birthday: values.birthday
                     },

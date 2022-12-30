@@ -63,7 +63,7 @@ const SearchSection = () => {
     return (
         <Wrapper>
             <StyledSearchSection>
-                {pathname !== "/explore" &&
+                {pathname !== "/explore" && !pathname.startsWith("/search") &&
                     <EnlargedSearchInput onFocus={() => setPopoverActivity(true)} ref={searchInputRef}
                                          placeholder="Search Twitter" value={searchText}
                                          onChange={(e) => setSearchText(e.target.value)} setValue={setSearchText}/>}

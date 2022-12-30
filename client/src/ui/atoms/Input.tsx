@@ -13,13 +13,13 @@ const Wrapper = styled.span`
 
 const EyeIcon = styled(FontAwesomeIcon)`
   position: absolute;
-  top: 2px;
+  top: 5px;
   right: 20px;
   cursor: pointer;
   user-select: none;
 
   &.hasPadding {
-    top: -11px;
+    top: -7px;
   }
 `
 
@@ -128,7 +128,7 @@ const Input = React.forwardRef<HTMLInputElement, IProps>((props, ref) => {
                 if (props.maxLength) setMaxLengthVisibility(false);
                 if (props.value !== "") return;
                 setPlaceholderState(false);
-            }} {...props} autoComplete="off"
+            }} {...props}  autoComplete="off"
                          type={props.type === "password" ? (isVisible ? "text" : "password") : props.type}/>
             {props.type === "password" && <EyeIcon className={isPlaceholderShown ? "hasPadding" : "noPadding"}
                                                    onClick={() => setVisibility((prevState) => !prevState)}

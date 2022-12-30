@@ -22,6 +22,7 @@ import {observer} from "mobx-react-lite";
 import FollowingStore from "../../store/FollowingStore";
 import formatNumber from "../../helpers/formatNumber";
 import ProfileTweetsStore from "../../store/ProfileTweetsStore";
+import AnotherUserStore from "../../store/AnotherUserStore";
 
 
 const ImageAndAdditionalFunctional = styled.div`
@@ -78,6 +79,8 @@ const DateOfJoiningAndWebsite = styled(FollowingAndFollowers)`
 `
 
 const TweetsWrapper = styled.div`
+  position: relative;
+  min-height: 40vh;
   @media screen and ${({theme}) => theme.media.mobileL} {
     margin-bottom: 70px;
   }
@@ -125,14 +128,14 @@ const ProfileInfo = observer(({user, additionalFunctional}: IProps) => {
             ProfileTweetsStore.reset();
             FollowingStore.reset();
         }
-    }, [])
+    }, [AnotherUserStore.anotherUserPseudonym])
 
     if (loading) return <CenteredLoader/>
 
 
     return (
         <React.Fragment>
-            <PageHeader subTitle={`${ProfileTweetsStore.tweets.length} tweets`}
+            <PageHeader subTitle={`${ProfileTweetsStore.tweets.length} ${ProfileTweetsStore.tweets.length === 1 ? "tweet" : "tweets"}`}
                         content={<H4Title>{user.username}</H4Title>}/>
             <DocumentTitle title={`${user.username} (@${user.pseudonym}) / Twitter`}/>
             <div className="wrapper">

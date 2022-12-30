@@ -8,7 +8,7 @@ import {LoginInputModel} from "./entities/loginInput.model";
 import {GraphQLExecutionContextWithReqAndRes} from "../declarations/graphqlContext";
 import {User} from "../globalDecorators/user.decorator";
 import {UserDto} from "./dto/user-dto";
-import {UseGuards} from "@nestjs/common";
+import {HttpException, HttpStatus, UseGuards} from "@nestjs/common";
 import {AuthGuard} from "../globalGuards/auth.guard";
 import {PasswordResetCodeModel} from "./entities/passwordResetCode.model";
 import {PasswordResetDataModel} from "./entities/passwordResetData.model";
@@ -25,13 +25,19 @@ export class AuthResolver {
     async refresh(@Context() context: GraphQLExecutionContextWithReqAndRes) {
         const refreshToken = context.req.cookies.refreshToken;
         const userData = await this.authService.refresh(refreshToken);
-        context.res.cookie("refreshToken", userData.refreshToken, {maxAge: 1000 * 60 * 60 * 24 * 30, httpOnly: true, secure: true, sameSite: "none"})
+        context.res.cookie("refreshToken", userData.refreshToken, {
+            maxAge: 1000 * 60 * 60 * 24 * 30,
+            httpOnly: true,
+            secure: true,
+            sameSite: "none"
+        })
         delete userData.refreshToken;
         return userData;
     }
 
     @Mutation(returns => userModel)
     async checkRegisterData(@Args("User") user: userModel) {
+        if (user.password.includes(" ")) throw new HttpException("Password must not contain whitespaces", HttpStatus.BAD_REQUEST);
         return await this.authService.checkRegisterData(user);
     }
 
@@ -68,7 +74,7 @@ export class AuthResolver {
 
     @Mutation(returns => Boolean)
     async resetPassword(@Args("NewPasswordData") newPasswordData: PasswordResetDataModel) {
-    return await this.authService.resetPassword(newPasswordData);
+        return await this.authService.resetPassword(newPasswordData);
     }
 
     @Mutation(returns => LoginModel)

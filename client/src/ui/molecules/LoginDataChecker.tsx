@@ -22,8 +22,8 @@ const LoginDataChecker = ({data, isLoading}: IProps) => {
     return (
         <React.Fragment>
             <Input   disabled={isLoading} autoFocus onChange={data.handleChange}
-                   value={data.values.emailOrUsername} ariaLabel="Email or username" name="emailOrUsername"
-                   placeholder="Email or username"/>
+                   value={data.values.emailOrUsername} ariaLabel="Email or pseudonym" name="emailOrUsername"
+                   placeholder="Email or pseudonym"/>
             <Button  ariaLabel="Login" buttonType="submit">Login</Button>
             <Button onClick={() => navigate("/password_reset")} ariaLabel="Reset password" type="secondary">Forgot password?</Button>
         </React.Fragment>

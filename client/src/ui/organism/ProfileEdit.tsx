@@ -37,7 +37,7 @@ const ProfileEditImage = styled.div`
 
 const CameraButton = styled.button`
   position: absolute;
-  left: 40%;
+  left: 50%;
   top: 50%;
   padding: 15px 19px;
   z-index: 1100;
@@ -51,24 +51,9 @@ const CameraButton = styled.button`
     background-color: rgba(0, 0, 0, 0.4);
     transition: 0.5s;
   }
-
-  @media screen and ${({theme}) => theme.media.mobile} {
-    left: 30%;
-  }
+  
 `
 
-const BackgroundRemover = styled(CloseButton)`
-  transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 17px 21px 12px 21px;
-
-  &:hover,
-  &:focus {
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-
-
-`
 
 const ProfileEditContent = styled.div`
   padding: 0 20px;
@@ -121,10 +106,6 @@ const ProfileEdit = observer(({closeEditWindow}: IProps) => {
                 <CameraButton onClick={() => profileBackgroundInputRef.current?.click()}>
                     <FontAwesomeIcon color="white" icon={solid("camera")}/>
                 </CameraButton>
-                <BackgroundRemover position={{
-                    left: "60%",
-                    top: "50%"
-                }} color="white" onClick={() => undefined}/>
             </ProfileEditImage>
             <ProfileEditContent>
                 <AvatarWrapper>

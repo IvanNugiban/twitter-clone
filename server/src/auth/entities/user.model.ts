@@ -33,6 +33,7 @@ export class userModel {
     @Field({description: "Email"})
     email: string;
 
+
     @IsString()
     @MinLength(4, {message: "Password must be longer than or equal to 4 characters "})
     @MaxLength(25, {message: "Password must be shorter than or equal to 25 characters"})

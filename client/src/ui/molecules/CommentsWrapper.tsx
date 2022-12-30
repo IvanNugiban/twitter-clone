@@ -85,7 +85,7 @@ const CommentsWrapper = observer(({tweetId, userPseudonym}: IProps) => {
                             variables: {
                                 commentData: {
                                     tweetRef: tweetId,
-                                    text: tweetText,
+                                    text: tweetText.trim(),
                                     media,
                                     gif,
                                     createdAt: new Date().toString()

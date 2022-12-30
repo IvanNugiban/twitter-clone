@@ -26,7 +26,7 @@ const RegistrationDataChecker = ({data, isLoading} : IProps) => {
             <Input maxLength={16} disabled={isLoading} autoFocus value={data.values.username} onChange={data.handleChange} name="username" placeholder="Username" ariaLabel="Your username"/>
             <Input maxLength={16} disabled={isLoading} value={data.values.pseudonym} onChange={data.handleChange} name="pseudonym" placeholder="Pseudonym" ariaLabel="Your pseudonym"/>
             <Input maxLength={100} disabled={isLoading} value={data.values.email} onChange={data.handleChange} name="email" placeholder="Email" ariaLabel="Your email"/>
-            <Input maxLength={25} disabled={isLoading} value={data.values.password} onChange={data.handleChange} name="password" placeholder="Password" ariaLabel="Your password"/>
+            <Input type="password" maxLength={25} disabled={isLoading} value={data.values.password} onChange={data.handleChange} name="password" placeholder="Password" ariaLabel="Your password"/>
             <H6Title>Birthday</H6Title>
             <Paragraph>This information will not be publicly available. Verify your age, even if this account is
                 for a company, pet, etc.</Paragraph>
